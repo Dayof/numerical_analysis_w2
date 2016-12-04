@@ -29,7 +29,7 @@ program coeficienteR2
 
     do i = 0, N
         temp = auxadj(0)
-        do j=1, 10, 1
+        do j=1, 16, 1
             temp = temp + auxadj(j)*v(i,1)**j
         end do
         sqtot = sqtot + v(i,2)**2

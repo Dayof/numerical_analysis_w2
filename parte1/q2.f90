@@ -2,12 +2,12 @@ program question2
 
     implicit none
 
-    integer :: i
+    integer :: i, j, k
     integer, parameter :: N = 16
-    real :: t
-    real, dimension(N) :: x, y
+    real :: t, Pn, P
+    real, dimension(0:N) :: x, y
 
-    t = 1.8
+    t = 1.7
 
     open(unit=11, file="data/tabela1.dat", status="unknown",  action="read")
 
@@ -19,45 +19,19 @@ program question2
 
     open(unit=12, file="data/question2.dat", status="unknown",  action="write")
 
-        write(12,*) P(t, x, y)
-        write(*,*) P(t, x, y)
+        do k=0, N
+            Pn = 0
+            do i=1, N+1
+                P = 1
+                do j=0, N
+                    if(i .ne. j) then
+                        P = P*((x(k) - x(j))/(x(i) - x(j)))
+                    endif
+                enddo
+                Pn = (P*y(i-1)) + Pn
+            enddo
+            write(12,*) x(k), Pn
+        enddo
 
     close(unit=12)
-
-contains
-    function P(t, x, y)
-
-        implicit none
-
-        integer :: i
-        real :: t, P
-        real, dimension(N) :: x, y
-
-        P = 0
-
-        do i=0, N
-            P = P + y(i)*L(i, t, x)
-        enddo
-
-        return
-    end function
-
-    function L(i, t, x)
-
-        implicit none
-
-        integer :: i, j
-        real :: L, t
-        real, dimension(N) :: x
-
-        L = 1
-
-        do j=0, N
-            if(j .ne. i) then
-                L = L * ((t - x(j))/(t - x(i)))
-            endif
-        enddo
-
-        return
-    endfunction
 end program question2

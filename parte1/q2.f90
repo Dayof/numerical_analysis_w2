@@ -4,10 +4,8 @@ program question2
 
     integer :: i, j, k
     integer, parameter :: N = 16
-    real :: t, Pn, P
+    real :: Pn, P
     real, dimension(0:N) :: x, y
-
-    t = 1.7
 
     open(unit=11, file="data/tabela1.dat", status="unknown",  action="read")
 
@@ -21,7 +19,7 @@ program question2
 
         do k=0, N
             Pn = 0
-            do i=1, N+1
+            do i=0, N
                 P = 1
                 do j=0, N
                     if(i .ne. j) then

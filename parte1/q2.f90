@@ -26,7 +26,7 @@ program question2
                         P = P*((x(k) - x(j))/(x(i) - x(j)))
                     endif
                 enddo
-                Pn = (P*y(i-1)) + Pn
+                Pn = (P*y(i)) + Pn
             enddo
             write(12,*) x(k), Pn
         enddo

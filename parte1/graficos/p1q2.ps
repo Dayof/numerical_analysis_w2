@@ -1,0 +1,16 @@
+set key default
+set key box
+set key ins vert
+set key right top
+
+set terminal png size 600, 400
+set output 'p1q2g1.png'
+
+set title "t_{i} versus y_{i}" font "Helvetica,20" norotate
+set xlabel "t_{i}" font "Helvetica,15"
+set ylabel "y_{i}" font "Helvetica, 15" norotate
+
+set style line 1 lc rgb '#0060ad' lt 1 lw 2 pt 7 pi -1 ps 1.5
+set pointintervalbox 3
+
+plot '../data/question2.dat' using 1:2 with linespoints ls 1 title 't_{i} versus y_{i}'

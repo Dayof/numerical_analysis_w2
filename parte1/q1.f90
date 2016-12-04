@@ -13,8 +13,8 @@ program ajuste1
 
     ! did you know that status="unknown" is not only optional
     ! but the default value, if you don't explicit it?
-    open(unit=100, file="tabela1.dat", iostat=ios, action="read")
-    if ( ios /= 0 ) stop "Erro na leitura do arquivo 100."
+    open(unit=100, file="data/tabela1.dat", iostat=ios, action="read")
+    if ( ios /= 0 ) stop "Erro na leitura do arquivo 'tabela1.dat'."
     do i=0, N, 1
         read(100, *) x(i, 0), y(i, 0)
     end do
@@ -51,7 +51,7 @@ program ajuste1
     ! solve Gram * alpha = B
     call solveSystem(Gram, alpha, B, rank)
 
-    open(unit=101, file="minimum.dat")
+    open(unit=101, file="data/question1.dat")
         write(101,*) alpha(:,0)
     close(unit=101)
 
@@ -77,7 +77,6 @@ contains
         double precision :: sum
 
         x = 0.0
-        ! GaussSeidel to solve Gram * a = b
         do iter=1, 100000
             do i=0, n
                 sum = 0.0

@@ -66,7 +66,22 @@ Determine, para o conjunto de pontos da Figura~\ref{fig:tab1}, os melhores ajust
 \subsection{Questão 2}
 \label{subsec:p1q2}
 
+Encontre o polinômio interpolador para estes dados e trace o seu resultado num gráfico. Apresente, igualmente, o polinômio interpolador encontrado teoricamente, usando polinômios de Lagrange (talvez seja recomendado usar algum programa de manipulação simbólica!). Comente seus resultados. Se você precisasse de uma função para descrever os dados da tabela, qual dentre o polinômio interpolador e os ajustes encontrados na questão 1 você escolheria? Por quê?
+
 \textbf{Resolução:}
+
+Para tentar ajustar os pontos da Figura~\ref{fig:tab1} foi utilizado o método de mínimos quadrados na questão 1, já nesta questão foi requisitado que ajustasse a curva utilizando o polinômio interpolador utilizando polinômios de Lagrange.
+
+Para uma determinada função $f(x)$ se tivermos n+1 pontos $(x_{i}, y_{i})$ com $t_{i} \neq t_{j}$ $\forall i,j$ sempre encontraremos um único polinômio interpolador de grau menor ou igual a $n$ tal que $y(x_{i}) = y_{i} \forall i=1,..,n+1$.
+
+Por propriedade do polinômio interpolador, a de passar exatamente em todos os pontos $(x_{i}, y_{i})$, o erro do ajuste é \textbf{nulo} ($\mathcal{E}\equiv 0$)! 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\textwidth]{tab1.png}
+	\caption{Tabela de pontos.}
+	\label{fig:tab1}
+\end{figure}
 
 \subsection{Questão 3}
 \label{subsec:p1q3}

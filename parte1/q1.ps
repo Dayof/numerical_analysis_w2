@@ -1,0 +1,16 @@
+set terminal png
+set output "q1.png"
+
+a0 = "`head minimum.dat | awk '{print $1}'`"
+a1 = "`head minimum.dat | awk '{print $2}'`"
+a2 = "`head minimum.dat | awk '{print $3}'`"
+a3 = "`head minimum.dat | awk '{print $4}'`"
+a4 = "`head minimum.dat | awk '{print $5}'`"
+a5 = "`head minimum.dat | awk '{print $6}'`"
+a6 = "`head minimum.dat | awk '{print $7}'`"
+a7 = "`head minimum.dat | awk '{print $8}'`"
+a8 = "`head minimum.dat | awk '{print $9}'`"
+a9 = "`head minimum.dat | awk '{print $10}'`"
+a10 = "`head minimum.dat | awk '{print $11}'`"
+
+plot a0 + a1*x + a2*x**2 + a2*x**3 + a4*x**4 + a5*x**5 + a6*x**6 + a7*x**7 + a8*x**8 + a9*x**9 + a10*x**10, "tabela1.dat" u 1:2 w p

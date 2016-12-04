@@ -193,7 +193,174 @@ Utilizando o mesmo critério de avaliação do ajuste da curva apresentado na Qu
 \subsection{Questão 3}
 \label{subsec:p1q3}
 
+Suponha que você precise determinar derivadas da função que gerou os pontos da tabela. Calcule, com ordem $\mathcal{O}(\Delta t^{2})$, as derivadas primeira e segunda em todos os pontos apresentados na tabela. Apresente os esquemas numéricos utilizados e justifique porque eles são de ordem $\mathcal{O}(\Delta t^{2})$. Compare os valores obtidos com as derivadas calculada utilizando-se a função que você escolheu na questão 2 para representar estes pontos.
+
 \textbf{Resolução:}
+
+Utilizando a definição da derivada temos:
+
+\begin{eqnarray}
+\begin{split}
+f'(t) = \varinjlim_{h \rightarrow 0} \dfrac{f(t + h) - f(t)}{h} \simeq \dfrac{f(t + h) - f(t)}{h}
+\end{split}
+\label{eq:d}
+\end{eqnarray}
+
+Dado 2 pontos $t_{0}$ e $t_{1}$ teremos a \textbf{diferença finita}:
+
+\begin{eqnarray}
+\begin{split}
+f'(t_{0}) \simeq \dfrac{f(t_{0} + h) - f(t_{0})}{h} \simeq \dfrac{f(t_{0} + (t_{1} - t_{0})) - f(t_{0})}{t_{1} - t_{0}} \simeq \dfrac{f(t_{1}) - f(t_{0})}{t_{1} - t_{0}} \simeq \dfrac{\Delta f}{\Delta t}
+\end{split}
+\label{eq:dp}
+\end{eqnarray}
+
+Expandindo-a em torno de um ponto $x=x_{0}$, teremos a aparição do \textbf{Erro de Lagrange}:
+
+\begin{eqnarray}
+\begin{split}
+f(t) = f(t_{0}) + f'(t_{0})(t - t_{0}) + \dfrac{f''(t_{0})}{2!}.(t - t_{0})^{2} + .. + \gamma (t)
+\end{split}
+\label{eq:dexp}
+\end{eqnarray}
+
+\begin{eqnarray}
+\begin{split}
+\gamma(t) = \dfrac{f^{n+1}(\epsilon)}{(n+1)!}.(t-t_{0})^{n+1}, \epsilon \in [t_{0}, t]
+\end{split}
+\label{eq:errorlagrange}
+\end{eqnarray}
+
+Logo, para achar $f'(t_{0})$:
+
+\begin{eqnarray}
+\begin{split}
+f(t) = f(t_{0}) + f'(t_{0})(t - t_{0}) + \dfrac{f''(\epsilon)}{2!}.(t - t_{0})^{2} \\
+f'(t_{0}) = \dfrac{f(t) - f(t_{0})}{t-t_{0}}  - \dfrac{f''(\epsilon)}{2!}.(t - t_{0})^{2}
+\end{split}
+\label{eq:flinhat0}
+\end{eqnarray}
+
+Para $t = t_{-1}$, sendo $\Delta t = (t - t_{0})$:
+
+\begin{eqnarray}
+\begin{split}
+f(t_{-1}) =  f(t_{0}) - f'(t_{0}).\Delta t + \dfrac{f''(t_{0})}{2!} \Delta t^{2} + \mathcal{O}(\Delta t^{3})
+\end{split}
+\end{eqnarray}
+
+\begin{eqnarray}
+\begin{split}
+f(t_{1}) =  f(t_{0}) + f'(t_{0}).\Delta t + \dfrac{f''(t_{0})}{2!} \Delta t^{2} + \mathcal{O}(\Delta t^{3})
+\end{split}
+\end{eqnarray}
+
+\begin{eqnarray}
+\begin{split}
+f(t_{-1}) - f(t_{1}) =  0 - 2.f'(t_{0}).\Delta t + 0 + \mathcal{O}(\Delta t^{3})
+\end{split}
+\end{eqnarray}
+
+Portanto, achamos a diferença finita centrada de $2ª$ ordem para $f'(t_{0})$: 
+
+\begin{eqnarray}
+\begin{split}
+f'(t_{0}) = \dfrac{f(t_{-1}) - f(t_{1})}{2 \Delta t} + \mathcal{O}(\Delta t^{2})
+\end{split}
+\end{eqnarray}
+
+Para a segunda derivada teremos:
+
+\begin{eqnarray}
+\begin{split}
+f(t_{-1}) =  f(t_{0}) - f'(t_{0}).\Delta t + \dfrac{f''(t_{0})}{2!} \Delta t^{2} - \dfrac{f'''(t_{0})}{3!} \Delta t^{3} + \mathcal{O}(\Delta t^{4})
+\end{split}
+\end{eqnarray}
+
+\begin{eqnarray}
+\begin{split}
+f(t_{1}) =  f(t_{0}) + f'(t_{0}).\Delta t + \dfrac{f''(t_{0})}{2!} \Delta t^{2} + \dfrac{f'''(t_{0})}{3!} \Delta t^{3} + \mathcal{O}(\Delta t^{4})
+\end{split}
+\end{eqnarray}
+
+\begin{eqnarray}
+\begin{split}
+f(t_{-1}) + f(t_{1}) =  2.f(t_{0}) + 0 + f''(x_{0}).\Delta t^{2} + 0 + \mathcal{O}(\Delta t^{4})
+\end{split}
+\end{eqnarray}
+
+Portanto, achamos a diferença finita centrada de $2ª$ ordem para $f''(t_{0})$: 
+
+\begin{eqnarray}
+\begin{split}
+f''(t_{0}) = \dfrac{f(t_{1}) - 2.f(t_{0}) + f(t_{-1})}{\Delta t^{2}} + \mathcal{O}(\Delta t^{2})
+\end{split}
+\end{eqnarray}
+
+Para cada ponto da tabela da Figura~\ref{fig:tab1} iremos calcular a primeira e segunda derivada utilizando a diferença finita centrada de $2ª$ ordem. 
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		$t_{i}$ & $y_{i}$ & $f'(t_{i})$ & $f''(t_{i})$  \\\hline
+		0,1 & 8,382780080 & 0,028519059 &	-827,1656179 \\\hline
+		0,2 & 8,953161240 & -0,356544742 & -827,1655021 \\\hline
+		0,3 & 1,251885890 & -0,057983634 & 1424,287967\\\hline
+		0,4 & 7,793488500 & 0,025099276 & -1258,122118\\\hline
+		0,5 & 1,753871440 & -0,306921198 & 594,0808778\\\hline
+		0,6 & 1,655066010 & 0,179102357 & 377,9662001\\\hline
+		0,7 & 5,335919860 & -0,061731711 & -859,6337493\\\hline
+		0,8 & 0,420432091 & -0,126018717 & 731,0605552\\\hline
+		0,9 & 2,815544610 & -0,015123848 & -509,2699477\\\hline
+		1,0 & 0,117955208 & 0,148399144 & 836,3157749\\\hline
+		1,1 & 5,783526900 & 0,225006171 & -683,1017213\\\hline
+		1,2 & 4,618077280 & -0,163992837 & -94,89626779\\\hline
+		1,3 & 2,503666880 & -0,100410969 & 222,0600698\\\hline
+		1,4 & 2,609858510 & 0,040173777 & 59,10918836\\\hline
+		1,5 & 3,307142260 & 0,039136537 & -61,18366753\\\hline
+		1,6 & 3,392589090 & 0,040112388 & 63,13534812\\\hline
+		1,7 & 4,109389780 & 2,883700811 & -1,669962002\\\hline
+	\end{tabular}
+	\caption{Derivadas primeira e segunda do pontos $t_{i}$.}
+	\label{tab:ti}
+\end{table}
+
+Como foi apresentado na Questão~\ref{subsec:p1q2} o Polinômio Interpolador de Lagrange é um bom ajuste para mapear os pontos da tabela, logo, vamos utilizá-lo para encontrar as derivadas da função que gerou os pontos da tabela. Seja $P(t)$ o Polinômio Interpolador de Lagrange:
+
+\begin{eqnarray}
+\begin{split}
+P(t) = \sum_{k=1}^{n+1} y_{k} \mathcal{L}_{k}(t) + E(t)
+\end{split}
+\label{eq:dlagrange}
+\end{eqnarray}
+
+Sendo $\mathcal{E}$ o erro da interpolação apresentando na Equação~\ref{eq:errortaylor}.
+
+\begin{eqnarray}
+\begin{split}
+\mathcal{E}(t) = \dfrac{f^{n+1}(\xi (t))}{(n+1)!}.(t-t_{1})..(t-t_{n+1})
+\end{split}
+\label{eq:errortaylor}
+\end{eqnarray}
+
+Então a primeira derivada da função será, dado $* = (t-t_{1})..(t-t_{n+1})$:
+
+\begin{eqnarray}
+\begin{split}
+f'(t) \simeq P'(t) = \sum_{k=1}^{n+1} [y_{k} \mathcal{L}_{k}'(t)] + \dfrac{d}{dt}\left[\dfrac{f^{n+1}(\xi (t))}{(n+1)!}\right].(*) + \dfrac{f^{n+1}(\xi (t))}{(n+1)!}.\dfrac{d}{dt}[*]
+\end{split}
+\label{eq:1dlagrange}
+\end{eqnarray}
+
+Portanto $P'(t)$ em um dos pontos tabelados será:
+
+\begin{eqnarray}
+\begin{split}
+P'(ti) = \sum_{k=1}^{n+1} [y_{k} \mathcal{L}_{k}'(ti)] + \dfrac{f^{n+1}(\xi (ti))}{(n+1)!}.\prod_{j=1, j \neq i}^{n+1} (t_{i} - t_{j})
+\end{split}
+\label{eq:1dtlagrange}
+\end{eqnarray}
 
 \subsection{Questão 4}
 \label{subsec:p1q4}

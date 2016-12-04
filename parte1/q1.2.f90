@@ -4,15 +4,17 @@ program coeficienteR2
 
     double precision :: sqres=0.0d0, sqtot=0.0d0, temp
     integer, parameter :: N=16
-    integer :: i=0, j
+    integer :: i=0, j, rank
 
     double precision, dimension(0:10) :: adjust
     double precision, dimension(0:N,2) :: v
 
     adjust = 0.0d0
 
+    read(*,*) rank
+
     open(unit=100, file="data/question1.dat")
-        read(100, *) adjust(:)
+        read(100, *) adjust(0:rank)
     close(unit=100)
 
     open(unit=101, file="data/tabela1.dat")

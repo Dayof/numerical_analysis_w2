@@ -1,0 +1,10 @@
+set key off
+
+set terminal png size 600, 400
+set output "graficos/q1.10.png"
+
+set title "Ajuste de y_{10}" font "Helvetica,20" norotate
+
+set style line 1 lc rgb '#0060ad' lt 1 lw 2 pt 7 pi -1 ps 1.5
+
+plot 22186523197921692 + 5398982398292246*x + 1070530822314452*x**2 + 188797669511872.8125*x**3 + 30280123253621.078125*x**4 + 4407121518010.6875*x**5 + 586368226391.298096*x**6 + a7*x**7 + a8*x**8 + a9*x**9 + a10*x**10, "data/tabela1.dat" u 1:2 w p

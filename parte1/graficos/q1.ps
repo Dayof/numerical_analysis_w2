@@ -1,5 +1,11 @@
-set terminal png
-set output "q1.1.png"
+set key off
+
+set terminal png size 600, 400
+set output "graficos/q1.10.png"
+
+set title "Ajuste de y_{10}" font "Helvetica,20" norotate
+
+set style line 1 lc rgb '#0060ad' lt 1 lw 2 pt 7 pi -1 ps 1.5
 
 a0 = "`head data/question1.dat | awk '{print $1}'`"
 a1 = "`head data/question1.dat | awk '{print $2}'`"

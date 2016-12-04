@@ -21,14 +21,14 @@ program question2
 
         do k=0, N
             Pn = 0
-            do i=1, N+1
+            do i=0, N
                 P = 1
                 do j=0, N
                     if(i .ne. j) then
                         P = P*((x(k) - x(j))/(x(i) - x(j)))
                     endif
                 enddo
-                Pn = (P*y(i-1)) + Pn
+                Pn = (P*y(i)) + Pn
             enddo
             write(12,*) x(k), Pn
         enddo

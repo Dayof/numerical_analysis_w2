@@ -4,10 +4,8 @@ program question2
 
     integer :: i, j, k
     integer, parameter :: N = 16
-    real :: t, Pn, P
+    real :: Pn, P
     real, dimension(0:N) :: x, y
-
-    t = 1.7
 
     open(unit=11, file="data/tabela1.dat", status="unknown",  action="read")
 

@@ -364,32 +364,22 @@ Suponha, agora, que você precise determinar uma aproximação para o valor da �
 
 \textbf{Resolução:}
 
-\section{Parte II : Splines}
-\label{sec:parte2}
+Para aproximar o valor da área da função que gerou os pontos da tabela da Figura~\ref{fig:tab1} iremos utilizar de duas regras, sendo elas, a regra dos Trapézios e a regra de $\frac{1}{3}$ Simpson.
 
-\subsection{Questão 5}
-\label{subsec:p2q5}
+A regra do trapézio generalizada é definida por:
 
-\textbf{Resolução:}
+\begin{eqnarray}
+\begin{split}
+\int_{t_{0}}^{n} f(t)dt = \dfrac{h}{2}[f(t_{0}) + 2*(f(t_{1} + ... + f(t_{n-1})) + f(t_{n})]
+\end{split}
+\end{eqnarray}
 
-\subsection{Questão 6}
-\label{subsec:p2q6}
+A regra do trapézio foi implementada e encontra-se no arquivo '\textbf{parte/question4.f90}'. O resultado aproximado da área da função que gerou os pontos da tabela da Figura~\ref{fig:tab1} foi de $5.85582733$. 
 
-\textbf{Resolução:}
+A regra de $\frac{1}{3}$ Simpson generalizada é definida por:
 
-\subsection{Questão 7}
-\label{subsec:p2q7}
-
-\textbf{Resolução:}
-
-\subsection{Questão 8}
-\label{subsec:p2q8}
-
-\textbf{Resolução:}
-
-\subsection{Questão 9}
-\label{subsec:p2q9}
-
-\textbf{Resolução:}
+\begin{gather*}
+\int_{t_{0}}^{t_{2n}} f(t)dt = \dfrac{h}{3} [ f(t_{0}) + 4*f(t_{1}) + 2*f(t_{2}) + 4*f(t_{3}) + 2*f(t_{4}) + ...\\ + 2*f(t_{2n-2}) + 4*f(t_{2n-1}) + f(t_{2n}) ]
+\end{gather*}
 
 \end{document}
